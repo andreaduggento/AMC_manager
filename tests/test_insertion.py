@@ -16,31 +16,58 @@ if __name__ == "__main__":
     
     # Example document
     doc = {
-      "_id": "example_problem_001",
-      "short_title": "Free Fall",
-      "long_title": "Calculate the time for a free-falling object",
-      "main_topic": "Mechanics",
-      "topic_tags": ["free fall", "motion"],
-      "skill_tags": ["calculation", "conceptual"],
-      "target": ["high school", "undergraduate"],
+      "_id": "unique_problem_id",
+      "group_id": "3Farc_g004",
+      "q_id": "3Farc_g004_q001",
+      "short_title": "Submerged Volume",
+      "long_title": "Calculating the Submerged Volume of an Object",
+      "main_topic": "Fluidi_Archimede",
+      "topic_tags": ["buoyancy", "density", "Archimedes' principle", "submerged volume"],
+      "skill_tags": [],
+      "target": ["triennali"],
       "question": {
-        "pre_latex": "Given an object in free fall, calculate the time it takes to hit the ground.",
-        "italian_latex": "Dato un oggetto in caduta libera, calcolare il tempo che impiega per toccare il suolo.",
-        "english_latex": "Given an object in free fall, calculate the time it takes to hit the ground.",
+        "pre_latex": """
+          \\FPeval\\objectDensity{clip(round(random*400+600,0))} % Density of the object in kg/m^3, ensuring it's less than water to float
+          \\FPeval\\waterDensity{1000} % Density of water in kg/m^3
+          \\FPeval\\totalVolume{clip(round(random*0.5+0.5,2))} % Total volume of the object in m^3
+          \\FPeval\\submergedVolume{clip(\\objectDensity/\\waterDensity*\\totalVolume)} % Submerged volume calculation based on density ratio
+          \\FPeval\\wrongOne{clip(\\totalVolume - \\submergedVolume)} % Mistake: Non-submerged volume instead of submerged
+          \\FPeval\\wrongTwo{clip(\\submergedVolume + 0.1)} % Randomly added volume, incorrect
+          \\FPeval\\wrongThree{clip(\\submergedVolume - 0.1)} % Randomly subtracted volume, incorrect if it makes sense
+          \\FPeval\\wrongFour{clip(\\totalVolume)} % Assumes the object is completely submerged, incorrect
+          \\FPeval\\wrongFive{0} % Assumes the object does not submerge at all, incorrect
+        """,
+        "italian_latex": "Un oggetto con densità \\(\\objectDensity \\, \\text{kg/m}^3\\) e volume totale \\(\\totalVolume \\, \\text{m}^3\\) viene immerso in acqua. Calcola il volume dell'oggetto che sarà immerso.",
+        "english_latex": "An object with a density of \\(\\objectDensity \\, \\text{kg/m}^3\\) and a total volume of \\(\\totalVolume \\, \\text{m}^3\\) is submerged in water. Calculate the volume of the object that will be submerged.",
         "image": None
       },
-      "solution": "t = \sqrt{\frac{2h}{g}}",
-      "format": ["open"],
+      "solution": {
+        "italian": "Il volume immerso dell'oggetto è \\(\\submergedVolume \\, \\text{m}^3\\), calcolato come \\(\\frac{\\objectDensity}{\\waterDensity} \\times \\totalVolume\\).",
+        "english": "The submerged volume of the object is \\(\\submergedVolume \\, \\text{m}^3\\), calculated as \\(\\frac{\\objectDensity}{\\waterDensity} \\times \\totalVolume\\)."
+      },
+      "format": ["multiple_choice"],
       "AMC_correctchoice": {
-        "italian": "Correct answer in Italian",
-        "english": "Correct answer in English"
+        "italian": "\\(\\submergedVolume \\, \\text{m}^3\\)",
+        "english": "\\(\\submergedVolume \\, \\text{m}^3\\)"
       },
       "AMC_wrongchoices": {
-        "italian": ["Wrong answer A in Italian", "Wrong answer B in Italian", "Wrong answer C in Italian"],
-        "english": ["Wrong answer A in English", "Wrong answer B in English", "Wrong answer C in English"]
+        "italian": [
+          "\\(\\wrongOne \\, \\text{m}^3\\)",
+          "\\(\\wrongTwo \\, \\text{m}^3\\)",
+          "\\(\\wrongThree \\, \\text{m}^3\\)",
+          "\\(\\wrongFour \\, \\text{m}^3\\)",
+          "\\(\\wrongFive \\, \\text{m}^3\\)"
+        ],
+        "english": [
+          "\\(\\wrongOne \\, \\text{m}^3\\)",
+          "\\(\\wrongTwo \\, \\text{m}^3\\)",
+          "\\(\\wrongThree \\, \\text{m}^3\\)",
+          "\\(\\wrongFour \\, \\text{m}^3\\)",
+          "\\(\\wrongFive \\, \\text{m}^3\\)"
+        ]
       }
     }
-    
+
     # Insert the document into CouchDB
     # Replace 'your_username' and 'your_password' with your actual CouchDB credentials
     auth = ('your_username', 'your_password')
