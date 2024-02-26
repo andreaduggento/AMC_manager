@@ -10,23 +10,28 @@ Each document in the database follows this structure:
 ```json
 {
   "_id": "unique_problem_id",
-  "short_title": "Example Short Title",
+  "group_id": "topic_group_number",
+  "q_id": "topic_group_number_question_number",
+  "short_title": "ShortTitle",
   "long_title": "Example Long and Descriptive Title",
   "main_topic": "ExampleTopic",
-  "topic_tags": ["tag1", "tag2"],
-  "skill_tags": ["knowledge", "reasoning"],
-  "target": ["triennali", "medicina"],
+  "topic_tags": ["tag1", "tag2",...],
+  "skill_tags": ["skill1", "skill2", ...],
+  "target": ["intended_audience"],
   "question": {
-    "pre_latex": "Text before the LaTeX question.",
-    "italian_latex": "LaTeX formatted question here in Italian.",
-    "english_latex": "LaTeX formatted question here in English.",
+    "pre_latex": "FP_variables_and_calculations",
+    "italian_latex": "question_text_in_Italian",
+    "english_latex": "question_text_in_English",
     "image": "optional_image_url_or_attachment_id"
   },
-  "solution": "LaTeX formatted solution here.",
-  "format": ["multiple_choice", "open"],
+  "solution": {
+    "italian": "solution_text_in_Italian",
+    "english": "solution_text_in_English"
+  },
+  "format": ["question_format"],
   "AMC_correctchoice": {
-    "italian": "Correct answer in Italian",
-    "english": "Correct answer in English"
+    "italian": "correct_choice_in_Italian",
+    "english": "correct_choice_in_English"
   },
   "AMC_wrongchoices": {
     "italian": ["Wrong answer A in Italian", "Wrong answer B in Italian", "Wrong answer C in Italian"],
@@ -37,17 +42,23 @@ Each document in the database follows this structure:
 
 ### Field Descriptions
 
-- `_id`: A unique identifier for the document.
-- `short_title`: A concise title for the problem.
-- `long_title`: A more detailed title.
-- `main_topic`: The primary topic of the problem.
-- `topic_tags` and `skill_tags`: Arrays of tags for categorization.
-- `target`: Intended audience or difficulty level.
-- `question`: Contains LaTeX-formatted question text, with `pre_latex` for introductory text, and `image` for optional images.
-- `solution`: LaTeX-formatted solution to the problem.
-- `format`: Indicates if the problem is suitable for "multiple_choice", "open" format, or both.
-- `AMC_correctchoice`: Contains the correct choice in both Italian and English.
-- `AMC_wrongchoices`: Lists the wrong choices in both languages.
+- `_id`: Unique identifier for the document.
+- `group_id`: Identifies the topic and group of the question.
+- `q_id`: Unique identifier for the question within its group.
+- `short_title`: A concise title for quick reference.
+- `long_title`: A more detailed description of the problem.
+- `main_topic`: The primary topic or concept the problem addresses.
+- `topic_tags`: Keywords related to the problem's topics for easier searching and categorization.
+- `skill_tags`: Keywords related to the skills or concepts tested by the problem (e.g., "knowledge", "reasoning")
+- `target`: Intended audience or difficulty level of the problem (i.e., "medicine", "bacherlor").
+- `question`: Contains the LaTeX-formatted question text, FP variables for dynamic content, and an optional image.
+  - `pre_latex`: FP (Floating Point) calculations for dynamic question variables.
+  - `italian_latex`/`english_latex`: Question text in Italian and English, respectively.
+  - `image`: Optional URL or attachment ID for an image related to the problem.
+- `solution`: Solution text in Italian and English, providing concise explanations or formulas.
+- `format`: Indicates the question format (e.g., "multiple_choice", "open").
+- `AMC_correctchoice`: The correct choice for multiple-choice questions, in both languages.
+- `AMC_wrongchoices`: A list of plausible but incorrect choices for multiple-choice questions, in both languages.
 
 ## Getting Started
 
