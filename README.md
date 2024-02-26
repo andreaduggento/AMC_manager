@@ -118,7 +118,7 @@ Each document in the database follows this structure:
 ### Setup
 
 1. Start CouchDB and access the Fauxton web interface at `http://localhost:5984/_utils`.
-2. Create a new database named `physics_problems`.
+2. Create a new database named `AMC_01`.
 3. Use the provided document structure to insert new physics problems into the database.
 
 ## Inserting Documents

@@ -12,7 +12,7 @@ def insert_document(db_url, doc, auth=None):
         print("Failed to insert document:", response.text)
 
 if __name__ == "__main__":
-    db_url = 'http://localhost:5984/physics_problems'
+    db_url = 'http://localhost:5984/amc_01'
     
     # Example document
     doc = {
