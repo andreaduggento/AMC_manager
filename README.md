@@ -1,7 +1,11 @@
 
 # Physics Problems Database Documentation
 
-This project uses CouchDB to store LaTeX-formatted physics problems. Each problem is stored as a document in CouchDB, designed to support multilingual content (Italian and English) and accommodate different formats (multiple choice and open-ended questions).
+This project uses CouchDB to store and manage LaTeX-formatted physics problems
+to be used with [Auto-Multiple-Choice software](https://www.auto-multiple-choice.net/). Each problem is stored as a
+document in CouchDB, designed to support multilingual content (Italian and
+English) and accommodate different formats (multiple choice and open-ended
+questions).
 
 ## Document Structure
 
@@ -59,6 +63,58 @@ Each document in the database follows this structure:
 - `format`: Indicates the question format (e.g., "multiple_choice", "open").
 - `AMC_correctchoice`: The correct choice for multiple-choice questions, in both languages.
 - `AMC_wrongchoices`: A list of plausible but incorrect choices for multiple-choice questions, in both languages.
+
+
+### Suggested use of fields
+
+- `group_id`: Used to group question which are similar, of which not more than one should not be drafted for any examination sheet. 
+    - *XAbcd_gxxx* is the suggested format, where "XAbcd"  is a topic code (see list of topic codes below) and where xxx is a progressive number to indicated groups.
+    - *q_id*: should identify the question within its group. Derived from group_id with an additional number: "XAbcd_gxxx_qyyy".
+
+
+### Suggested taxonomy for topics
+
+  -  `0Sgen`: general statistics
+  -  `0Spro`: theory probability
+  -  `0Sepi`: statistic concepts in epidemiology
+
+  -  `1Pmat`: mathematics propaedeutics 
+  -  `1Pvec`: vector algebra
+  -  `1Puni`: units of measurements and convertion
+  -  `1Pcin`: kinematics
+
+  -  `2Mmec`: basic mechanics (forces, friction, equilibrium)
+  -  `2Mene`: mechanics which involves the concept of energy 
+  -  `2Mrot`: mechanics which involves the concept of torque
+  -  `2Mela`: elasticity of materials, including springs 
+
+  -  `3Ftor`: hydrostatic 
+  -  `3Farc`: buoyant force
+  -  `3Fcon`: fluid dynamics involving continuity princicple 
+  -  `3Fber`: fluid dynamics involving Bernoulli principle
+  -  `3Fpoi`: fluid dynamics involving Poiseuille principle 
+  -  `3Fmem`: elastic membranes and capillary action
+  -  `3Fcar`: topics in cardiovascular physics
+  -  `
+  -  `4Ccal`: calorimetry
+  -  `4Cdil`: thermal expansion
+  -  `4Cter`: thermodynamics including 1st principle, kinetic theory of gases and ideal gas processes
+  -  `
+  -  `5Esta`: electrostatic with electric field and electric potential
+  -  `5Ecap`: electrostatic with electric field and electric potential
+  -  `5Ecir`: electric circuits with batteries and resistors only
+  -  `5Ecrc`: electric circuits with capacitors
+  -  `5Ener`: nernst equilibrium
+
+  -  `6Elor`: magnetism and Lorentz force
+  -  `6Efar`: Faraday induction and Lentz principle
+
+  -  `7Rdec`: radioactive decay
+  -  `7Rdos`: dosimetry
+  -  `7Rrad`: radiation physics 
+  -  `7Rwav`: general principles about waves and electromagnetic waves
+  -  `7Rsou`: mechanical waves and topics related to sound waves
+
 
 ## Getting Started
 
